@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "identityguard-claude-enablement"
+version = "0.1.0"
+description = "In-process reference lab for Claude agent permissions, authenticated MCP tools, scoped sub-agents, and a 60-minute workshop."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Jatinder Singh" }]
+dependencies = [
+  "anthropic==0.75.0",
+  "fastapi==0.128.1",
+  "httpx==0.27.2",
+  "mcp==1.20.0",
+  # mcp 1.20 imports pydantic._internal._typing_extra.eval_type_backport, removed in pydantic 2.14.
+  "pydantic==2.13.4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
